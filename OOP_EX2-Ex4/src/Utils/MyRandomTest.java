@@ -85,7 +85,7 @@ class MyRandomTest {
 		}
 		// BUG should be a fail..
 		double rp = count*100.0/times; 
-		// shoule be about 25%
+		// should be about 25%
 		double err = Math.abs(25-rp);
 		if(err>2) {
 			fail("ERR using a random point over "+times +" should lead to ±25%");
