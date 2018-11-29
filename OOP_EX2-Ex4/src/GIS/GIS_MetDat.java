@@ -24,6 +24,7 @@ public class GIS_MetDat implements Meta_data{
     /**
      * string function
      */
+    @Override
     public String toString(){
         return getUTC()+ ",";
     }
