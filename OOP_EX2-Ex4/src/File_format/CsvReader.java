@@ -1780,13 +1780,13 @@ public class CsvReader {
 		public static final int INITIAL_COLUMN_BUFFER_SIZE = 50;
 	}
 
-    public static String[] readLines(String path) {
+    public static String[] read(String path) {
         List<String> lines = new ArrayList<>();
         try {
-            BufferedReader br = new BufferedReader(new FileReader(path));
+            BufferedReader BR = new BufferedReader(new FileReader(path));
             // to iterate reading line by line
             String line;
-            while ((line = br.readLine()) != null) {
+            while ((line = BR.readLine()) != null) {
                 lines.add(line);
             }
         } catch (IOException e) {
