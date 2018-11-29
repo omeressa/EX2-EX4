@@ -47,11 +47,19 @@ public class MyCoords implements coords_converter{
 		Point3D ans = new Point3D(x,y,z); 
 		return ans;
 	}
-
+/**
+ * this code is taken from someone on github and addabted it to my own coding
+ */
 	@Override
 	public double[] azimuth_elevation_dist(Point3D gps0, Point3D gps1) {
-		// TODO Auto-generated method stub
-		return null;
+		double dist = distance3d(gps0,gps1);
+		double elevation = (180/PI)*((gps1.z()-gps0.z())/dist-dist/(2*radios));
+		double delta= gps1.y()-gps0.y();
+		double azimuth = Math.toDegrees(Math.atan2(Math.sin(Math.toRadians(delta))*Math.cos(Math.toRadians(gps1.x())),
+				(Math.cos(Math.toRadians(gps0.x()))*Math.sin(Math.toRadians(gps1.x())))-Math.sin(Math.toRadians(gps0.x()))*Math.cos(Math.toRadians(gps1.x()))*Math.cos(Math.toRadians(delta))));
+		if (azimuth<0) azimuth+=360;
+		double[] Polar = {azimuth,elevation,dist};
+		return Polar;
 	}
 	/**
 	 * this function returns true id the gps point got a valid lat lon and alt
