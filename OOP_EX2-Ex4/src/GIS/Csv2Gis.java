@@ -9,7 +9,11 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 
 public class Csv2Gis {
-
+/**
+ * still not final, testing time
+ * @param path
+ * @return
+ */
     public static GIS_layer csv2gisLayer(String path) {
         String[] lines = CsvReader.read(path);
         GIS_layer gisLayer = (GIS_layer) new GIS_lay(); 
