@@ -41,11 +41,9 @@ public class kml {
             KmlFileTemplateFormat+="<Point>";
             KmlFileTemplateFormat+="<coordinates>" + ((Point3D) element.getGeom()).y() + "," + ((Point3D) element.getGeom()).x() + "," + ((Point3D) element.getGeom()).z() + "</coordinates>";
             KmlFileTemplateFormat+="</Point>";
-            KmlFileTemplateFormat+="</Placemark>";
-    	
-    	
-    	
+            KmlFileTemplateFormat+="</Placemark>";	
         }
-    	
+        KmlFileTemplateFormat+="</Folder>\n</Document>\n</kml>";
+        System.out.print(KmlFileTemplateFormat);       
     }
     }
