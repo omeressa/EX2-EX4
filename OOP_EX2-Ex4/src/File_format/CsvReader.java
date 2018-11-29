@@ -1,5 +1,6 @@
 package File_format;
 
+
 /*
  * Java CSV is a stream based library for reading and writing
  * CSV and other delimited data.
@@ -25,6 +26,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -32,13 +34,17 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.nio.charset.Charset;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
 
 /**
  * A stream based parser for parsing delimited text data from a file or a
  * stream.
  */
 public class CsvReader {
+	
 	private Reader inputStream = null;
 
 	private String fileName = null;
@@ -1773,4 +1779,19 @@ public class CsvReader {
 
 		public static final int INITIAL_COLUMN_BUFFER_SIZE = 50;
 	}
+
+    public static String[] readLines(String path) {
+        List<String> lines = new ArrayList<>();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(path));
+            // to iterate reading line by line
+            String line;
+            while ((line = br.readLine()) != null) {
+                lines.add(line);
+            }
+        } catch (IOException e) {
+            return new String[0];
+        }
+        return lines.toArray(new String[lines.size()]);
+    }
 }
