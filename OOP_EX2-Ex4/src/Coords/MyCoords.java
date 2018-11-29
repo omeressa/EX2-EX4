@@ -13,13 +13,15 @@ public class MyCoords implements coords_converter{
 	 */
 	private static final double PI =Math.PI;
 	
-
+	/**
+	 * compute the given point
+	 */
 	@Override
 	public Point3D add(Point3D gps, Point3D local_vector_in_meter) {
-/*
- * this is a reference from which we thought of the code down:
- * https://stackoverflow.com/questions/53411266/gps-to-cartesian-x-y-z
- */
+    /*
+    * this is a reference from which we thought of the code down:
+    * https://stackoverflow.com/questions/53411266/gps-to-cartesian-x-y-z
+    */
 		double ln = Math.cos((gps.x()*Math.PI)/180);
 		double x = gps.x() + Math.toDegrees(Math.asin(local_vector_in_meter.x() / radios));
 		double y = gps.y() + Math.toDegrees(Math.asin(local_vector_in_meter.y() / (radios*ln) ));
@@ -28,7 +30,10 @@ public class MyCoords implements coords_converter{
 		
 		return ans;
 	}
-
+	
+	/**
+	 * compute the 3D distance between the two gps points
+	 */
 	@Override
 	public double distance3d(Point3D gps0, Point3D gps1) {
 		double ln = Math.cos((gps0.x()*PI)/180);
@@ -37,7 +42,10 @@ public class MyCoords implements coords_converter{
 		double ans = Math.sqrt(Math.pow(x_dis, 2) + Math.pow(y_dis, 2));
 		return ans;
 	}
-
+	
+	/**
+	 * compute the 3d vector between two gps points
+	 */
 	@Override
 	public Point3D vector3D(Point3D gps0, Point3D gps1) {
 		double ln = Math.cos((gps0.x()*PI)/180);
@@ -68,6 +76,7 @@ public class MyCoords implements coords_converter{
 	}
 	/**
 	 * this function returns true id the gps point got a valid lat lon and alt
+	 * @return true/false
 	 */
 	@Override
 	public boolean isValid_GPS_Point(Point3D p) {
