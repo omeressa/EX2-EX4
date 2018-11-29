@@ -29,30 +29,7 @@ public class kml {
     }
 
     public void toKmlFile(String path) throws FileNotFoundException {
-    	/*
-    	PrintWriter writer = new PrintWriter(new File(path));
-        writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-        writer.println("<kml xmlns=\"http://www.opengis.net/kml/2.2\">");
-        writer.println("<Document>");
-        writer.println("<Folder>");
-        writer.println("<name/>");
-        for (GIS_element element : points) {
-            writer.println("<Placemark>");
-            writer.println("<name/>");
-            Date date = new Date(element.getData().getUTC());
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            writer.println("<description><![CDATA[Timestamp: <b>" + element.getData().getUTC() + "</b><br/>Date: <b>" + df.format(date) + "</b>]]></description>");
-            writer.println("<Point>");
-            writer.println("<coordinates>" + ((Point3D) element.getGeom()).y() + "," + ((Point3D) element.getGeom()).x() + "," + ((Point3D) element.getGeom()).z() + "</coordinates>");
-            writer.println("</Point>");
-            writer.println("</Placemark>");
-        }
-        writer.println("</Folder>");
-        writer.println("</Document>");
-        writer.println("</kml>");
-        writer.close();
-    }
-    	 */
+
     	//private static String KmlFileTemplateFormat = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<kml xmlns=\"http://www.opengis.net/kml/2.2\"><Document>\n%s\n</Document>\n</kml>";
     	//private static String KmlPlacemarkTemplateFormat = "<Placemark>\n<name>%s</name>\n<TimeStamp>\n<when>%s</when>\n</TimeStamp>\n<description>%s</description>\n<Point>\n<coordinates>%s,%s,%s</coordinates></Point>\n</Placemark>";
     	
