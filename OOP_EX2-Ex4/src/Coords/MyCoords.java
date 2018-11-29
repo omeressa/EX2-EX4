@@ -11,7 +11,7 @@ public class MyCoords implements coords_converter{
 	/**
 	 * PI
 	 */
-	private static final double PI =Math.PI;
+	private static final double PI =Math.PI; 
 	
 	
 	/** computes a new point which is the gps point transformed by a 3D vector (in meters)*/
