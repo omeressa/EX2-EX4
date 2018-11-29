@@ -55,8 +55,13 @@ public class MyCoords implements coords_converter{
 		double dist = distance3d(gps0,gps1);
 		double elevation = (180/PI)*((gps1.z()-gps0.z())/dist-dist/(2*radios));
 		double delta= gps1.y()-gps0.y();
-		double azimuth = Math.toDegrees(Math.atan2(Math.sin(Math.toRadians(delta))*Math.cos(Math.toRadians(gps1.x())),
-				(Math.cos(Math.toRadians(gps0.x()))*Math.sin(Math.toRadians(gps1.x())))-Math.sin(Math.toRadians(gps0.x()))*Math.cos(Math.toRadians(gps1.x()))*Math.cos(Math.toRadians(delta))));
+		double azimuth = Math.toDegrees(Math.atan2(Math.sin(Math.toRadians(delta))
+				*Math.cos(Math.toRadians(gps1.x())),
+				(Math.cos(Math.toRadians(gps0.x()))
+				*Math.sin(Math.toRadians(gps1.x())))
+				-Math.sin(Math.toRadians(gps0.x()))
+				*Math.cos(Math.toRadians(gps1.x()))
+				*Math.cos(Math.toRadians(delta))));
 		if (azimuth<0) azimuth+=360;
 		double[] Polar = {azimuth,elevation,dist};
 		return Polar;
