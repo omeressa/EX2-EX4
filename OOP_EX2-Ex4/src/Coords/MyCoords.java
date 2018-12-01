@@ -33,20 +33,19 @@ public class MyCoords implements coords_converter{
 	/** computes the 3D distance (in meters) between the two gps like points */
 	@Override
 	public double distance3d(Point3D gps0, Point3D gps1) {
-		double ln = Math.cos((gps0.x()*PI)/180);
-		double x_dis = Math.sin((gps1.x()-gps0.x())*(PI/180))*radios;
-		double y_dis = Math.sin((gps1.y()-gps0.y())*(PI/180))*ln*radios;
-		double ans = Math.sqrt(Math.pow(x_dis, 2) + Math.pow(y_dis, 2));
-		return ans;
+
+		Point3D p= vector3D(gps0,gps1);
+		return Math.sqrt(p.x()*p.x()+ p.y()*p.y());
 	}
 	
 	/** computes the 3D vector (in meters) between two gps like points */
 	@Override
 	public Point3D vector3D(Point3D gps0, Point3D gps1) {
-		double ln = Math.cos((gps0.x()*PI)/180);
-		double x = Math.sin((gps1.x()-gps0.x())*(PI/180))*radios;
-		double y = Math.sin((gps1.y()-gps0.y())*(PI/180))*radios*ln;
-		double z = gps0.z()-gps1.z();
+		
+		double ln = Math.cos(Math.toRadians(gps0.x()));
+		double x= radios*Math.sin(Math.toRadians((gps1.x()-gps0.x())));
+		double y= ln*radios*Math.sin(Math.toRadians((gps1.y()-gps0.y())));
+		double z= gps1.z()-gps0.z();
 		Point3D ans = new Point3D(x,y,z); 
 		return ans;
 	}
