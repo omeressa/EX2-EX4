@@ -11,7 +11,7 @@ import java.io.FileNotFoundException;
 
 public class MultiCsv {
 
-    public static  void compine_Csv_File_In_One_Kml(String file) throws FileNotFoundException {
+    public static  GIS_project compine_Csv_File_In_One_Kml(String file) throws FileNotFoundException {
         GIS_project project = recursiveSearch(new File(file));
         kml kml = new kml();
         for (GIS_layer layer : project) {
@@ -19,7 +19,7 @@ public class MultiCsv {
         }
         // save kml as a text file
         kml.make(file + "Csv_Compine.kml");
-        ;
+        return project;
     }
 
     public static GIS_project recursiveSearch(File folder) {
