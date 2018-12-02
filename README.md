@@ -9,4 +9,10 @@ This is a Geographic Information System (GIS), we convert a Csv file into a kml 
 the csv file contains a list of wifi points with their information
 first we identified the elements of the gps point,added the right functions for Coords package
 then we wrote the kml/csv/multiCsv classes
-after reading the csv file and making it a kml file, we can uplode the file on apps suck as google earth and see these gps points :-
+after reading the csv file and making it a kml file, we can uplode the file on apps such as google earth and see these gps points
+
+#reference
+https://www.mobility-services.in.tum.de/?p=2335   for Coords
+
+
+https://stackoverflow.com/questions/1375729/search-for-file-in-directory-with-multiple-directories
