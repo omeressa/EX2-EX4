@@ -1,5 +1,8 @@
 package File_format;
 
+/**
+ * this is a CSVReader i took from Github
+ */
 
 /*
  * Java CSV is a stream based library for reading and writing
@@ -38,13 +41,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import GIS.GIS_elem;
+import GIS.GIS_lay;
+
 
 /**
  * A stream based parser for parsing delimited text data from a file or a
  * stream.
  */
 public class CsvReader {
-	
+
 	private Reader inputStream = null;
 
 	private String fileName = null;
@@ -841,21 +847,21 @@ public class CsvReader {
 
 									if (userSettings.SafetySwitch
 											&& dataBuffer.Position
-													- dataBuffer.ColumnStart
-													+ columnBuffer.Position > 100000) {
+											- dataBuffer.ColumnStart
+											+ columnBuffer.Position > 100000) {
 										close();
 
 										throw new IOException(
 												"Maximum column length of 100,000 exceeded in column "
 														+ NumberFormat
-																.getIntegerInstance()
-																.format(
-																		columnsCount)
+														.getIntegerInstance()
+														.format(
+																columnsCount)
 														+ " in record "
 														+ NumberFormat
-																.getIntegerInstance()
-																.format(
-																		currentRecord)
+														.getIntegerInstance()
+														.format(
+																currentRecord)
 														+ ". Set the SafetySwitch property to false"
 														+ " if you're expecting column lengths greater than 100,000 characters to"
 														+ " avoid this error.");
@@ -1094,21 +1100,21 @@ public class CsvReader {
 
 									if (userSettings.SafetySwitch
 											&& dataBuffer.Position
-													- dataBuffer.ColumnStart
-													+ columnBuffer.Position > 100000) {
+											- dataBuffer.ColumnStart
+											+ columnBuffer.Position > 100000) {
 										close();
 
 										throw new IOException(
 												"Maximum column length of 100,000 exceeded in column "
 														+ NumberFormat
-																.getIntegerInstance()
-																.format(
-																		columnsCount)
+														.getIntegerInstance()
+														.format(
+																columnsCount)
 														+ " in record "
 														+ NumberFormat
-																.getIntegerInstance()
-																.format(
-																		currentRecord)
+														.getIntegerInstance()
+														.format(
+																currentRecord)
 														+ ". Set the SafetySwitch property to false"
 														+ " if you're expecting column lengths greater than 100,000 characters to"
 														+ " avoid this error.");
@@ -1139,13 +1145,13 @@ public class CsvReader {
 				if (rawBuffer.Position == 0) {
 					rawRecord = new String(dataBuffer.Buffer,
 							dataBuffer.LineStart, dataBuffer.Position
-									- dataBuffer.LineStart - 1);
+							- dataBuffer.LineStart - 1);
 				} else {
 					rawRecord = new String(rawBuffer.Buffer, 0,
 							rawBuffer.Position)
 							+ new String(dataBuffer.Buffer,
 									dataBuffer.LineStart, dataBuffer.Position
-											- dataBuffer.LineStart - 1);
+									- dataBuffer.LineStart - 1);
 				}
 			} else {
 				// for hasMoreData to ever be false, all data would have had to
@@ -1196,7 +1202,7 @@ public class CsvReader {
 
 			System.arraycopy(dataBuffer.Buffer, dataBuffer.LineStart,
 					rawBuffer.Buffer, rawBuffer.Position, dataBuffer.Count
-							- dataBuffer.LineStart);
+					- dataBuffer.LineStart);
 
 			rawBuffer.Position += dataBuffer.Count - dataBuffer.LineStart;
 		}
@@ -1317,7 +1323,7 @@ public class CsvReader {
 
 					currentValue = new String(dataBuffer.Buffer,
 							dataBuffer.ColumnStart, lastLetter
-									- dataBuffer.ColumnStart + 1);
+							- dataBuffer.ColumnStart + 1);
 				}
 			} else {
 				updateCurrentValue();
@@ -1675,7 +1681,7 @@ public class CsvReader {
 
 		public RawRecordBuffer() {
 			Buffer = new char[StaticSettings.INITIAL_COLUMN_BUFFER_SIZE
-					* StaticSettings.INITIAL_COLUMN_COUNT];
+			                  * StaticSettings.INITIAL_COLUMN_COUNT];
 			Position = 0;
 		}
 	}
@@ -1780,18 +1786,7 @@ public class CsvReader {
 		public static final int INITIAL_COLUMN_BUFFER_SIZE = 50;
 	}
 
-    public static String[] read(String path) {
-        List<String> lines = new ArrayList<>();
-        try {
-            BufferedReader BR = new BufferedReader(new FileReader(path));
-            // to iterate reading line by line
-            String line;
-            while ((line = BR.readLine()) != null) {
-                lines.add(line);
-            }
-        } catch (IOException e) {
-            return new String[0];
-        }
-        return lines.toArray(new String[lines.size()]);
-    }
+
+
+
 }
