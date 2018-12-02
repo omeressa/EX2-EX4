@@ -33,9 +33,6 @@ return data;
 }
 
 /**
-* פונקציית translate:
-* לקחת את הנקודה ולהשתמש בפונקציה ממחלקת MYCOORDS 
-* של הוספת וקטור
 * this is what the other student added on whatsapp for what to do with this function
 */
 @Override
