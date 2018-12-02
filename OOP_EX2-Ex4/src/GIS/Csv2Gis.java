@@ -1,36 +1,57 @@
 package GIS;
 
 
-import File_format.CsvReader;
-import Geom.Point3D;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
-
-public class Csv2Gis {
 /**
- * still not final, testing time
- * @param path
- * @return
+ * this class is to turn Csv file into GIS_Layer
+ * @author admin
+ *
  */
-    public static GIS_layer csv2gisLayer(String path) {
-        String[] lines = CsvReader.read(path);
-        GIS_layer gisLayer = (GIS_layer) new GIS_lay(); 
-        for (int lineIndex = 2; lineIndex < lines.length; lineIndex++) { 
-            String[] splittedData = lines[lineIndex].split(",");
-            double alt = Double.parseDouble(splittedData[8]);
-            double lon = Double.parseDouble(splittedData[7]);
-            double lat = Double.parseDouble(splittedData[6]);
-            Point3D geom = new Point3D(lat, lon, alt);
-            String time = splittedData[3];
-            DateTimeFormatter parseFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            LocalDateTime dateTime = LocalDateTime.parse(time, parseFormatter);
-            long utc = dateTime.atOffset(ZoneOffset.UTC).toInstant().toEpochMilli();
-            Meta_data data = new GIS_MetDat(utc);
-            GIS_element element = new GIS_elem(geom, data);
-            gisLayer.add(element);
-        }
-        return gisLayer;
-    }
+public class Csv2Gis {
+	/**
+	 * still not final, testing time
+	 * @param File
+	 * @return
+	 */
+	public static GIS_layer csv2gisLayer(String File) {
+		GIS_lay Layer = new GIS_lay(File);
+		try (BufferedReader bufferReader = new BufferedReader(new FileReader(File))) {
+			bufferReader.readLine();
+			bufferReader.readLine();
+			String Lines;
+			while ((Lines = bufferReader.readLine()) != null) {
+				String[] elements = Lines.split(",");
+				//adding the gps data into layer
+				Layer.add(new GIS_elem(elements[0], elements[1], elements[2], elements[3], elements[4], elements[5], elements[6], elements[7],
+						elements[8], elements[9], elements[10]));
+			}
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		return Layer;
+	}
+	/**
+	 * similer code used as reference
+	 * @param path
+	 * @return
+	 */
+	public static String[] read(String path) {
+		List<String> lines = new ArrayList<>();
+		try {
+			BufferedReader BR = new BufferedReader(new FileReader(path));
+			String line;
+			while ((line = BR.readLine()) != null) {
+				lines.add(line);
+			}
+		} catch (IOException e) {
+			return new String[0];
+		}
+		return lines.toArray(new String[lines.size()]);
+	}
 }
