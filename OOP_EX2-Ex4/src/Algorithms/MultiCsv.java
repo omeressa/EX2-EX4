@@ -13,7 +13,7 @@ public class MultiCsv {
 
     public static  GIS_project compine_Csv_File_In_One_Kml(String file) throws FileNotFoundException {
     	File files = new File(file);
-        GIS_project project = search(files);
+        GIS_project project = search(files);;
         kml kml = new kml();
         for (GIS_layer layer : project) {
             kml.addLayer(layer);
@@ -53,9 +53,10 @@ public class MultiCsv {
      * @return
      */
     public static boolean find_CsvFiles_Only(File file){
-    	boolean answer= false;
-    	if(file.getName().endsWith(".csv"))
-    		answer=true;
-        return answer;
+//    	boolean answer= false;
+//    	if(file.getName().endsWith(".csv"))
+//    		answer=true;
+//        return answer;
+    	return file.getName().endsWith(".csv");
     }
 }
