@@ -18,7 +18,7 @@ public class MultiCsv {
             kml.addLayer(layer);
         }
         // save kml as a text file
-        kml.make(file + "Csv_Compine.kml");
+        kml.make(file + "_Csv_Compine.kml");
         return project;
     }
 
