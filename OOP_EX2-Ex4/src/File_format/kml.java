@@ -29,17 +29,11 @@ public final class kml {
 			points.add( element);
 		}
 	}
-	/*public kml(String output)throws IOException
-	{
-    	 PW = new PrintWriter(new File(output));
-	}*/
 
 
 	/**
-	 * this function write the Project to KML, it does double iteration, one on the layer, and one on the element
-	 * and writes each element at a time to the kml file.
-	 * the constructor must run before this!
-	 * @param project
+         *this function make kml file for us with all the elements needed to show in google earth
+	 * @param path
 	 * @throws FileNotFoundException 
 	 */
 	public void make(String path) throws FileNotFoundException
