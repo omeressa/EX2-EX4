@@ -12,25 +12,26 @@ import java.io.FileNotFoundException;
 public class MultiCsv {
 
     public static  GIS_project compine_Csv_File_In_One_Kml(String file) throws FileNotFoundException {
-        GIS_project project = recursiveSearch(new File(file));
+    	File files = new File(file);
+        GIS_project project = search(files);
         kml kml = new kml();
         for (GIS_layer layer : project) {
             kml.addLayer(layer);
         }
-        // save kml as a text file
         kml.make(file + "_Csv_Compine.kml");
         return project;
     }
 
-    public static GIS_project recursiveSearch(File folder) {
-        GIS_project project = new GIS_proj();
+    public static GIS_project search(File folder) {
+        GIS_project project = new GIS_proj();;
+        
         if (folder.isDirectory()) {
             try {
                 File[] files = folder.listFiles();
                 for (File file : files) {
                     if (file.isDirectory()) {
-                        GIS_project tempProject = recursiveSearch(file);
-                        for (GIS_layer layer : tempProject) {
+                        GIS_project tmp = search(file);
+                        for (GIS_layer layer : tmp) {
                             project.add(layer);
                         }
                     }
@@ -45,7 +46,16 @@ public class MultiCsv {
         return project;
     }
 
-    public static boolean find_CsvFiles_Only(File fileType){
-        return fileType.getName().endsWith(".csv");
+ 
+    /**
+     * a helping function for cheacking if the file is csv or kml
+     * @param file
+     * @return
+     */
+    public static boolean find_CsvFiles_Only(File file){
+    	boolean answer= false;
+    	if(file.getName().endsWith(".csv"))
+    		answer=true;
+        return answer;
     }
 }
