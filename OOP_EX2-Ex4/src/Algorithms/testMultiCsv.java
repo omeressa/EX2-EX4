@@ -13,9 +13,7 @@ public class testMultiCsv {
 	public static void main(String[] args) throws FileNotFoundException {
         File file=new File("OOP_EX2-EX4/Data");
 		String files="OOP_EX2-EX4/Data";
-		GIS_proj project =  (GIS_proj) MultiCsv.creatProject(files);
-   
-		//Csv2Kml.turn(files);
-		
+		MultiCsv.compine_Csv_File_In_One_Kml(files);
+   		
 	}
 }
